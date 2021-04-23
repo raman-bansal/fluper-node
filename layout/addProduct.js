@@ -9,7 +9,7 @@ module.exports = {
 
             });
         } catch (err) {
-            res.status(404).send({ error: err });
+            res.status(404).send({ code: 'failure', error: err });
         }
     }
 }

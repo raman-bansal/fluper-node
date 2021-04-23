@@ -7,7 +7,7 @@ module.exports = {
             const userData = await userModel.find();
             res.status(200).send({ code: 'success', data: { userData: userData, productData: productData } });
         } catch (err) {
-            res.status(404).send({ error: err });
+            res.status(404).send({ code: 'failure', error: err });
         }
     }
 }
