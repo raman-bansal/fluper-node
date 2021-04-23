@@ -7,9 +7,9 @@ module.exports = {
             productModel.insertMany(data).then((result) => {
                 res.status(200).send({ code: 'success', data: result });
 
-            }); 
+            });
         } catch (err) {
-            res.status(404).send(err);
+            res.status(404).send({ error: err });
         }
     }
 }

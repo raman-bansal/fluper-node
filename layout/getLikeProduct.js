@@ -8,7 +8,7 @@ module.exports = {
                 { $group: { _id: '$name', total: { $sum: "$like" } } }])
             res.status(200).send({ code: 'success', data: productData });
         } catch (err) {
-            res.status(404).send(err);
+            res.status(404).send({ error: err });
         }
     }
 }

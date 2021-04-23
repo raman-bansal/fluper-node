@@ -6,9 +6,9 @@ module.exports = {
     login: (req, res) => {
         try {
             const reqData = req.body;
-            userModel.findOne({emailId:reqData.emailId}, function (err, user) {
-                if (err) return res.status(401).send(err);
-                if (!user) return res.status(401).send({code:'failure', message: "Invalid emailId or password" });
+            userModel.findOne({ emailId: reqData.emailId }, function (err, user) {
+                if (err) return res.status(401).send({ error: err });
+                if (!user) return res.status(401).send({ code: 'failure', message: "Invalid emailId or password" });
                 var token = jwt.sign({ id: user._id }, env.secret, {
                     expiresIn: 86400
                 });
@@ -16,7 +16,7 @@ module.exports = {
                 res.status(200).send({ code: 'success', data: user });
             });
         } catch (err) {
-            res.status(401).send(err);
+            res.status(401).send({ error: err });
         }
 
     }
